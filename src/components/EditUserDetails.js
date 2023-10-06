@@ -42,12 +42,16 @@ function EditUserDetails() {
       return errors;
     },
     onSubmit: async (values) => {
-      let users = await axios.put(
-        `https://651e92db44a3a8aa47689c04.mockapi.io/users`,
-        values
-      );
-      alert("user Created");
-      navigate("/portal/users");
+      try {
+        let users = await axios.put(
+          `https://651e92db44a3a8aa47689c04.mockapi.io/users/${params.id}`,
+          values
+        );
+        alert("userdetails Updated");
+        navigate("/portal/users");
+      } catch (error) {
+        console.error("Axios error:", error);
+      }
     },
   });
   useEffect(() => {
